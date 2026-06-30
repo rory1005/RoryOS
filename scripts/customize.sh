@@ -1,61 +1,47 @@
 #!/bin/bash
 
+###############################################################################
+# 项目名称：RoryOS
+#
+# 文件名称：
+#     customize.sh
+#
+# 文件作用：
+#     RoryOS 自定义总入口脚本，负责按顺序调用所有功能模块。
+#
+# 当前功能：
+#     ① 调用系统基础设置脚本
+#
+# 作者：
+#     Rory
+#
+# 技术支持：
+#     福贵（ChatGPT）
+#
+# 创建日期：
+#     2026-07-01
+#
+# 最后修改：
+#     2026-07-01
+###############################################################################
+
 set -e
 
 OPENWRT_DIR="${1:-openwrt}"
 
-echo "=================================="
-echo "       RoryOS Build System"
-echo "=================================="
+echo "======================================="
+echo "        RoryOS 自定义开始"
+echo "======================================="
 
 if [ ! -d "$OPENWRT_DIR" ]; then
-  echo "OpenWrt directory not found: $OPENWRT_DIR"
+  echo "错误：找不到 OpenWrt 目录：$OPENWRT_DIR"
   exit 1
 fi
 
-echo "[1/4] Set default hostname..."
-mkdir -p "$OPENWRT_DIR/files/etc/config"
+chmod +x scripts/*.sh
 
-cat > "$OPENWRT_DIR/files/etc/config/system" <<'EOF'
-config system
-	option hostname 'RoryOS'
-	option timezone 'CST-8'
-	option zonename 'Asia/Shanghai'
-	option ttylogin '0'
-	option log_size '64'
-	option urandom_seed '0'
-EOF
+bash scripts/01-system.sh "$OPENWRT_DIR"
 
-echo "[2/4] Set default LAN IP..."
-mkdir -p "$OPENWRT_DIR/files/etc/config"
-
-cat > "$OPENWRT_DIR/files/etc/config/network" <<'EOF'
-config interface 'loopback'
-	option device 'lo'
-	option proto 'static'
-	option ipaddr '127.0.0.1'
-	option netmask '255.0.0.0'
-
-config globals 'globals'
-	option ula_prefix 'auto'
-
-config device
-	option name 'br-lan'
-	option type 'bridge'
-	list ports 'lan1'
-	list ports 'lan2'
-	list ports 'lan3'
-	list ports 'wan'
-
-config interface 'lan'
-	option device 'br-lan'
-	option proto 'static'
-	option ipaddr '192.168.10.1'
-	option netmask '255.255.255.0'
-	option ip6assign '60'
-EOF
-
-echo "[3/4] Banner..."
-echo "Banner OK"
-
-echo "[4/4] RoryOS Customize Done!"
+echo "======================================="
+echo "        RoryOS 自定义完成"
+echo "======================================="
