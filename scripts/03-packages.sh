@@ -52,6 +52,19 @@ CONFIG_PACKAGE_luci-app-upnp=y
 CONFIG_PACKAGE_luci-app-ddns=y
 
 # RoryOS 常用工具
+
+# RoryOS AX3000T Wi-Fi 支持
+CONFIG_PACKAGE_kmod-mt7915e=y
+CONFIG_PACKAGE_kmod-mt7981-firmware=y
+CONFIG_PACKAGE_mt7981-wo-firmware=y
+CONFIG_PACKAGE_wireless-tools=y
+CONFIG_PACKAGE_iw=y
+CONFIG_PACKAGE_iwinfo=y
+CONFIG_PACKAGE_hostapd-common=y
+CONFIG_PACKAGE_wpad-basic-mbedtls=y
+CONFIG_PACKAGE_luci-app-wifi-schedule=y
+CONFIG_PACKAGE_luci-i18n-wifi-schedule-zh-cn=y
+
 CONFIG_PACKAGE_htop=y
 CONFIG_PACKAGE_curl=y
 CONFIG_PACKAGE_wget-ssl=y
