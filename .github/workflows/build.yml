@@ -53,7 +53,7 @@ jobs:
           fi
             
             chmod +x scripts/customize.sh
-            bash scripts/customize.sh
+            bash scripts/customize.sh openwrt
           
       - name: Prepare feeds
         working-directory: openwrt
