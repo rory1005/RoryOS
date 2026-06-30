@@ -88,11 +88,13 @@ jobs:
           make defconfig
 
       - name: Download sources
+        if: ${{ github.event.inputs.build_mode == 'build' }}
         working-directory: openwrt
         run: |
           make download -j$(nproc) V=s
 
       - name: Build firmware
+        if: ${{ github.event.inputs.build_mode == 'build' }}
         working-directory: openwrt
         run: |
           make -j$(nproc) V=s || make -j1 V=s
@@ -105,6 +107,7 @@ jobs:
           du -ah openwrt/bin/targets | sort -h | tail -50
 
       - name: Upload full target output
+        if: ${{ github.event.inputs.build_mode == 'build' }}
         uses: actions/upload-artifact@v4
         with:
           name: roryos-ax3000t-512m-full-output
