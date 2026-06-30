@@ -68,24 +68,7 @@ jobs:
           CONFIG_TARGET_mediatek=y
           CONFIG_TARGET_mediatek_filogic=y
           CONFIG_TARGET_mediatek_filogic_DEVICE_xiaomi_mi-router-ax3000t=y
-
-          CONFIG_PACKAGE_luci=y
-          CONFIG_PACKAGE_luci-ssl=y
-          CONFIG_PACKAGE_luci-theme-argon=y
-          CONFIG_PACKAGE_luci-app-argon-config=y
-          CONFIG_PACKAGE_luci-app-ttyd=y
-          CONFIG_PACKAGE_luci-app-sqm=y
-          CONFIG_PACKAGE_luci-app-upnp=y
-          CONFIG_PACKAGE_luci-app-ddns=y
-
-          CONFIG_PACKAGE_htop=y
-          CONFIG_PACKAGE_curl=y
-          CONFIG_PACKAGE_wget-ssl=y
-          CONFIG_PACKAGE_nano=y
-          CONFIG_PACKAGE_bash=y
-          CONFIG_PACKAGE_ca-bundle=y
-          CONFIG_PACKAGE_ca-certificates=y
-
+         
           # Avoid interactive kernel option prompts
           # CONFIG_KERNEL_IR_IMON_DECODER is not set
           EOF
