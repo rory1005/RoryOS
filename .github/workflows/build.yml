@@ -51,6 +51,9 @@ jobs:
           if [ -d files ]; then
             cp -a files/. openwrt/files/
           fi
+            
+            chmod +x scripts/customize.sh
+            bash scripts/customize.sh
           
       - name: Prepare feeds
         working-directory: openwrt
