@@ -7,10 +7,11 @@
 #     02-theme.sh
 #
 # 文件作用：
-#     RoryOS 管理界面美化模块。
+#     管理界面（LuCI）主题配置。
 #
 # 当前功能：
-#     （暂未添加）
+#     ① 设置 Argon 为默认主题
+#     ② 设置 LuCI 默认语言为中文
 #
 # 作者：
 #     Rory
@@ -29,8 +30,14 @@ set -e
 
 OPENWRT_DIR="${1:-openwrt}"
 
-echo "【主题】开始..."
+echo "【主题】开始设置默认主题..."
 
-# 后续主题相关功能将在这里添加
+mkdir -p "$OPENWRT_DIR/files/etc/config"
 
-echo "【主题】完成。"
+cat > "$OPENWRT_DIR/files/etc/config/luci" <<'EOF'
+config core 'main'
+	option mediaurlbase '/luci-static/argon'
+	option lang 'zh_cn'
+EOF
+
+echo "【主题】默认主题设置完成。"
