@@ -42,6 +42,8 @@ chmod +x scripts/*.sh
 
 bash scripts/01-system.sh "$OPENWRT_DIR"
 bash scripts/02-theme.sh "$OPENWRT_DIR"
+bash scripts/03-packages.sh "$OPENWRT_DIR"
+
 echo "======================================="
 echo "        RoryOS 自定义完成"
 echo "======================================="
