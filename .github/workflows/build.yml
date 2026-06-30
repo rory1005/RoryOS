@@ -3,6 +3,15 @@ name: Build RoryOS AX3000T 512M
 on:
   workflow_dispatch:
     inputs:
+      build_mode:
+        description: "Build mode"
+        required: true
+        default: "test-only"
+        type: choice
+        options:
+          - test-only
+          - build
+
       openwrt_branch:
         description: "OpenWrt branch"
         required: true
