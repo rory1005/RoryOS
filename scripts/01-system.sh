@@ -1,10 +1,37 @@
 #!/bin/bash
 
+###############################################################################
+# 项目名称：RoryOS
+#
+# 文件名称：
+#     01-system.sh
+#
+# 文件作用：
+#     系统基础设置。
+#
+# 当前功能：
+#     ① 设置默认主机名为 RoryOS
+#     ② 设置默认时区为 Asia/Shanghai
+#     ③ 设置默认 LAN IP 为 192.168.10.1
+#
+# 作者：
+#     Rory
+#
+# 技术支持：
+#     福贵（ChatGPT）
+#
+# 创建日期：
+#     2026-07-01
+#
+# 最后修改：
+#     2026-07-01
+###############################################################################
+
 set -e
 
 OPENWRT_DIR="${1:-openwrt}"
 
-echo "[System] Setting hostname, timezone and LAN IP..."
+echo "【系统】开始系统基础设置..."
 
 mkdir -p "$OPENWRT_DIR/files/etc/config"
 
@@ -44,4 +71,4 @@ config interface 'lan'
 	option ip6assign '60'
 EOF
 
-echo "[System] Done."
+echo "【系统】系统基础设置完成。"
