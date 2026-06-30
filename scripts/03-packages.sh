@@ -7,11 +7,13 @@
 #     03-packages.sh
 #
 # 文件作用：
-#     软件包安装模块。
+#     软件包管理模块。
 #
 # 当前功能：
-#     ① 预留软件包管理位置
-#     ② 后续用于添加 LuCI、Argon、TTYD、Lucky、OpenClash、PassWall2 等软件包
+#     ① 生成 RoryOS 基础软件包配置
+#     ② 加入 LuCI 管理界面
+#     ③ 加入 Argon 主题
+#     ④ 加入常用基础工具
 #
 # 作者：
 #     Rory
@@ -30,8 +32,29 @@ set -e
 
 OPENWRT_DIR="${1:-openwrt}"
 
-echo "【软件包】开始..."
+echo "【软件包】开始生成 RoryOS 软件包配置..."
 
-# 后续软件包相关功能将在这里添加
+cat >> "$OPENWRT_DIR/.config" <<'EOF'
 
-echo "【软件包】完成。"
+# RoryOS 基础软件包
+CONFIG_PACKAGE_luci=y
+CONFIG_PACKAGE_luci-ssl=y
+CONFIG_PACKAGE_luci-theme-argon=y
+CONFIG_PACKAGE_luci-app-argon-config=y
+CONFIG_PACKAGE_luci-app-ttyd=y
+CONFIG_PACKAGE_luci-app-sqm=y
+CONFIG_PACKAGE_luci-app-upnp=y
+CONFIG_PACKAGE_luci-app-ddns=y
+
+# RoryOS 常用工具
+CONFIG_PACKAGE_htop=y
+CONFIG_PACKAGE_curl=y
+CONFIG_PACKAGE_wget-ssl=y
+CONFIG_PACKAGE_nano=y
+CONFIG_PACKAGE_bash=y
+CONFIG_PACKAGE_ca-bundle=y
+CONFIG_PACKAGE_ca-certificates=y
+
+EOF
+
+echo "【软件包】软件包配置完成。"
