@@ -57,6 +57,8 @@ jobs:
       - name: Prepare feeds
         working-directory: openwrt
         run: |
+          echo "src-git argon https://github.com/jerrykuku/luci-theme-argon.git" >> feeds.conf.default
+           
           ./scripts/feeds update -a
           ./scripts/feeds install -a
 
