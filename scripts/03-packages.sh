@@ -28,9 +28,18 @@
 #     2026-07-01
 ###############################################################################
 
-cat > .config <<'EOF'
+#!/bin/bash
+
+set -e
+
+echo "开始生成 RoryOS 软件包配置..."
+
+OPENWRT_DIR="."
+
+cat > "$OPENWRT_DIR/.config" <<'EOF'
+
 # =========================
-# LuCI 核心（必须强制）
+# LuCI 核心
 # =========================
 CONFIG_PACKAGE_luci=y
 CONFIG_PACKAGE_luci-ssl=y
@@ -66,7 +75,7 @@ CONFIG_PACKAGE_luci-i18n-upnp-zh-cn=y
 CONFIG_PACKAGE_luci-i18n-ddns-zh-cn=y
 
 # =========================
-# WiFi（MT7981 正确组合）
+# WiFi（MT7981）
 # =========================
 CONFIG_PACKAGE_kmod-mt7915e=y
 CONFIG_PACKAGE_kmod-mt7981-firmware=y
