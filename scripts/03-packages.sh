@@ -28,39 +28,51 @@
 #     2026-07-01
 ###############################################################################
 
-set -e
-
-OPENWRT_DIR="${1:-openwrt}"
-
-echo "【软件包】开始生成 RoryOS 软件包配置..."
-
 cat >> "$OPENWRT_DIR/.config" <<'EOF'
 
-# RoryOS 基础软件包
+# =========================
+# LuCI 核心（必须强制）
+# =========================
 CONFIG_PACKAGE_luci=y
 CONFIG_PACKAGE_luci-ssl=y
 CONFIG_PACKAGE_luci-base=y
 CONFIG_PACKAGE_luci-mod-admin-full=y
 CONFIG_PACKAGE_luci-compat=y
+CONFIG_PACKAGE_rpcd=y
 CONFIG_PACKAGE_rpcd-mod-luci=y
 CONFIG_PACKAGE_lua=y
 
+# =========================
 # Argon
+# =========================
 CONFIG_PACKAGE_luci-theme-argon=y
 CONFIG_PACKAGE_luci-app-argon-config=y
 
+# =========================
 # 中文
+# =========================
 CONFIG_PACKAGE_luci-i18n-base-zh-cn=y
 
+# =========================
 # 常用插件
+# =========================
 CONFIG_PACKAGE_luci-app-ttyd=y
 CONFIG_PACKAGE_luci-app-sqm=y
 CONFIG_PACKAGE_luci-app-upnp=y
 CONFIG_PACKAGE_luci-app-ddns=y
 
-# WiFi
+CONFIG_PACKAGE_luci-i18n-ttyd-zh-cn=y
+CONFIG_PACKAGE_luci-i18n-sqm-zh-cn=y
+CONFIG_PACKAGE_luci-i18n-upnp-zh-cn=y
+CONFIG_PACKAGE_luci-i18n-ddns-zh-cn=y
+
+# =========================
+# WiFi（MT7981 正确组合）
+# =========================
 CONFIG_PACKAGE_kmod-mt7915e=y
+CONFIG_PACKAGE_kmod-mt7981-firmware=y
 CONFIG_PACKAGE_mt7981-wo-firmware=y
+
 CONFIG_PACKAGE_wireless-tools=y
 CONFIG_PACKAGE_iw=y
 CONFIG_PACKAGE_iwinfo=y
@@ -68,5 +80,3 @@ CONFIG_PACKAGE_hostapd-common=y
 CONFIG_PACKAGE_wpad-basic-mbedtls=y
 
 EOF
-
-echo "【软件包】软件包配置完成。"
